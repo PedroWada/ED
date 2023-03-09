@@ -1,7 +1,5 @@
 package atividade01EDD;
 
-import javax.swing.JOptionPane;
-
 public class Vetor {
 	 	private String[] elementos;
 	    protected int tamanho;
@@ -56,24 +54,22 @@ public class Vetor {
 	        return -1;
 	    }
 	    
-	   public void adicionaInicio(int posicao, String elemento){
+	   public boolean adicionaPosicao(int posicao, String elemento){
 	       this.aumentaCapacidade();
-	       while(posicao < 0 || posicao > tamanho){
-	    	   System.out.println("Inválido");
-	       }
-	       String aux;
-	       String bux;
-	       aux = this.elementos[posicao];
-	       this.elementos[posicao] = elemento;
-	            for(int i=posicao+1; i < this.tamanho; i++){
-	            	bux = this.elementos[i];
-	            	this.elementos[i] = aux;
-	            	aux = bux;
-	                
-	            }
+			if(!(posicao >=0 && posicao < tamanho)){
+				throw new IllegalArgumentException("PosiÃ§Ã£o InvÃ¡lida");
+			}
+			this.aumentaCapacidade();
+			for(int i=this.tamanho-1; i >=posicao; i--){
+				this.elementos[i+1] = this.elementos[i];
+			}
+			this.elementos[posicao] = elemento;
+			this.tamanho++;
+			
+			return true;
 	   }
 	   
-	   private void aumentaCapacidade(){
+	   public void aumentaCapacidade(){
 	       if (this.tamanho == this.elementos.length){
 	           String[] elementosNovos = new String[this.elementos.length * 2];
 	           for (int i=0; i<this.elementos.length; i++){
@@ -83,14 +79,14 @@ public class Vetor {
 	       }
 	   }
 	   
-	   public void remove(int posicao) throws Exception{
+	   public void remove(int posicao){
 	       if(posicao >=0 && posicao < tamanho){
 	           for(int i=posicao; i<this.tamanho-1; i++){
 	               this.elementos[i] = this.elementos[i+1];
 	           }
 	           this.tamanho--;
 	        } else {
-	            throw new Exception("Posição Inválida");
+	           System.out.println("PosiÃ§Ã£o InvÃ¡lida");
 	        } 
 	   }
 
