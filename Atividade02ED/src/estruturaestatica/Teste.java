@@ -1,32 +1,39 @@
 package estruturaestatica;
 
+import javax.swing.JOptionPane;
+
 public class Teste {
     
     public static void main(String[] args){
-       Pilha<Integer> pilha = new Pilha<Integer>();
-       
-       System.out.println("Verifica se a Pilha está vazia: " + pilha.estaVazia()); 
-       
-       System.out.println(pilha); // Exibe 
-       System.out.println("O tamanho Real da Pilha: " + pilha.tamanho()); 
-       System.out.println("O tamanho da estrutura: " + pilha.tamanhoEstrutura()); 
-       
-       for (int i=1; i<=25; i++) {
-           pilha.empilha(i);
-       }       
-       
-       System.out.println(pilha); // Exibe 
-       
-       System.out.println("O tamanho Real da Pilha: " + pilha.tamanho()); 
-       System.out.println("O tamanho da estrutura: " + pilha.tamanhoEstrutura()); 
-       
-       System.out.println("Quem está no topo: " + pilha.topo()); 
-       
-       System.out.println("Desempilhar elemento: " + pilha.desempilha()); 
-       
-       System.out.println(pilha); // Exibe 
-       System.out.println("O tamanho Real da Pilha: " + pilha.tamanho()); 
-       System.out.println("O tamanho da estrutura: " + pilha.tamanhoEstrutura()); 
-        
+        Fila<Integer> fila = new Fila<Integer>();
+        int p = 0;
+        int senha = 0;
+        while(p != 999){
+            p = Integer.parseInt(JOptionPane.showInputDialog(
+            "Digite 1 para enfileirar \n"+
+            "Digite 2 para ver a fila \n"+
+            "Digite 3 para desenfileirar \n"+
+            "Digite 999 para finalizar"));
+
+        switch(p){
+            case 1:
+                senha+=1;
+                fila.enfileira(senha);
+                System.out.println(fila.toString());
+                break;
+            case 2:
+                System.out.println(fila.toString());
+                break;
+            case 3:
+                fila.desenfileira();
+                System.out.println(fila.toString());
+                break;
+            case 999:
+                break;
+        }
+
+        }
+
+
     }
 }
